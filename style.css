@@ -1,0 +1,170 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --btn-bg: #ffffff;
+  --btn-hover: #f0f0f0;
+  --display-bg: #333;
+  --display-color: #fff;
+  --accent: #4caf50;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --btn-bg: #1e1e1e;
+  --btn-hover: #2a2a2a;
+  --display-bg: #000;
+  --display-color: #0f0;
+  --accent: #00c853;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+  padding: 1rem;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.theme-toggle input {
+  display: none;
+}
+
+.theme-toggle .slider {
+  width: 50px;
+  height: 25px;
+  background: #ccc;
+  border-radius: 25px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.theme-toggle .slider::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2.5px;
+  left: 3px;
+  transition: 0.3s;
+}
+
+.theme-toggle input:checked + .slider::before {
+  transform: translateX(25px);
+  background: #00c853;
+}
+
+.calculator {
+  background: var(--btn-bg);
+  color: var(--text-color);
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  animation: ww forwards 0.5s ease-in-out;
+  transition: background 0.3s, color 0.3s;
+}
+
+@keyframes ww {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.display {
+  background: var(--display-bg);
+  color: var(--display-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: right;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.expression {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  min-height: 1.5rem;
+}
+
+.result {
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+}
+
+button {
+  padding: 1.5rem;
+  font-size: 1.25rem;
+  background: var(--btn-bg);
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+}
+
+button:hover {
+  background: var(--btn-hover);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.equals {
+  background: var(--accent);
+  color: white;
+  grid-row: span 2;
+}
+
+.zero {
+  grid-column: span 2;
+}
+
+@media (max-width: 480px) {
+  .display {
+    font-size: 2rem;
+    padding: 0.8rem;
+  }
+
+  button {
+    padding: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .theme-toggle {
+    top: 0.5rem;
+    right: 0.5rem;
+    transform: scale(0.9);
+  }
+}
